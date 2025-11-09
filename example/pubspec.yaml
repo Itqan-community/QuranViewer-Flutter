@@ -1,0 +1,2476 @@
+name: example
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.8
+  quran_viewer:
+    path: ../../quran_viewer
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^5.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+  fonts:
+    - family: QPC v2 p1
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p1.ttf
+
+    - family: QPC v2 p2
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p2.ttf
+
+    - family: QPC v2 p3
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p3.ttf
+
+    - family: QPC v2 p4
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p4.ttf
+
+    - family: QPC v2 p5
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p5.ttf
+
+    - family: QPC v2 p6
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p6.ttf
+
+    - family: QPC v2 p7
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p7.ttf
+
+    - family: QPC v2 p8
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p8.ttf
+
+    - family: QPC v2 p9
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p9.ttf
+
+    - family: QPC v2 p10
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p10.ttf
+
+    - family: QPC v2 p11
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p11.ttf
+
+    - family: QPC v2 p12
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p12.ttf
+
+    - family: QPC v2 p13
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p13.ttf
+
+    - family: QPC v2 p14
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p14.ttf
+
+    - family: QPC v2 p15
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p15.ttf
+
+    - family: QPC v2 p16
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p16.ttf
+
+    - family: QPC v2 p17
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p17.ttf
+
+    - family: QPC v2 p18
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p18.ttf
+
+    - family: QPC v2 p19
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p19.ttf
+
+    - family: QPC v2 p20
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p20.ttf
+
+    - family: QPC v2 p21
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p21.ttf
+
+    - family: QPC v2 p22
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p22.ttf
+
+    - family: QPC v2 p23
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p23.ttf
+
+    - family: QPC v2 p24
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p24.ttf
+
+    - family: QPC v2 p25
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p25.ttf
+
+    - family: QPC v2 p26
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p26.ttf
+
+    - family: QPC v2 p27
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p27.ttf
+
+    - family: QPC v2 p28
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p28.ttf
+
+    - family: QPC v2 p29
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p29.ttf
+
+    - family: QPC v2 p30
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p30.ttf
+
+    - family: QPC v2 p31
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p31.ttf
+
+    - family: QPC v2 p32
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p32.ttf
+
+    - family: QPC v2 p33
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p33.ttf
+
+    - family: QPC v2 p34
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p34.ttf
+
+    - family: QPC v2 p35
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p35.ttf
+
+    - family: QPC v2 p36
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p36.ttf
+
+    - family: QPC v2 p37
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p37.ttf
+
+    - family: QPC v2 p38
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p38.ttf
+
+    - family: QPC v2 p39
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p39.ttf
+
+    - family: QPC v2 p40
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p40.ttf
+
+    - family: QPC v2 p41
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p41.ttf
+
+    - family: QPC v2 p42
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p42.ttf
+
+    - family: QPC v2 p43
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p43.ttf
+
+    - family: QPC v2 p44
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p44.ttf
+
+    - family: QPC v2 p45
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p45.ttf
+
+    - family: QPC v2 p46
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p46.ttf
+
+    - family: QPC v2 p47
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p47.ttf
+
+    - family: QPC v2 p48
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p48.ttf
+
+    - family: QPC v2 p49
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p49.ttf
+
+    - family: QPC v2 p50
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p50.ttf
+
+    - family: QPC v2 p51
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p51.ttf
+
+    - family: QPC v2 p52
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p52.ttf
+
+    - family: QPC v2 p53
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p53.ttf
+
+    - family: QPC v2 p54
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p54.ttf
+
+    - family: QPC v2 p55
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p55.ttf
+
+    - family: QPC v2 p56
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p56.ttf
+
+    - family: QPC v2 p57
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p57.ttf
+
+    - family: QPC v2 p58
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p58.ttf
+
+    - family: QPC v2 p59
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p59.ttf
+
+    - family: QPC v2 p60
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p60.ttf
+
+    - family: QPC v2 p61
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p61.ttf
+
+    - family: QPC v2 p62
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p62.ttf
+
+    - family: QPC v2 p63
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p63.ttf
+
+    - family: QPC v2 p64
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p64.ttf
+
+    - family: QPC v2 p65
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p65.ttf
+
+    - family: QPC v2 p66
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p66.ttf
+
+    - family: QPC v2 p67
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p67.ttf
+
+    - family: QPC v2 p68
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p68.ttf
+
+    - family: QPC v2 p69
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p69.ttf
+
+    - family: QPC v2 p70
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p70.ttf
+
+    - family: QPC v2 p71
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p71.ttf
+
+    - family: QPC v2 p72
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p72.ttf
+
+    - family: QPC v2 p73
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p73.ttf
+
+    - family: QPC v2 p74
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p74.ttf
+
+    - family: QPC v2 p75
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p75.ttf
+
+    - family: QPC v2 p76
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p76.ttf
+
+    - family: QPC v2 p77
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p77.ttf
+
+    - family: QPC v2 p78
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p78.ttf
+
+    - family: QPC v2 p79
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p79.ttf
+
+    - family: QPC v2 p80
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p80.ttf
+
+    - family: QPC v2 p81
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p81.ttf
+
+    - family: QPC v2 p82
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p82.ttf
+
+    - family: QPC v2 p83
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p83.ttf
+
+    - family: QPC v2 p84
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p84.ttf
+
+    - family: QPC v2 p85
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p85.ttf
+
+    - family: QPC v2 p86
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p86.ttf
+
+    - family: QPC v2 p87
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p87.ttf
+
+    - family: QPC v2 p88
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p88.ttf
+
+    - family: QPC v2 p89
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p89.ttf
+
+    - family: QPC v2 p90
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p90.ttf
+
+    - family: QPC v2 p91
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p91.ttf
+
+    - family: QPC v2 p92
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p92.ttf
+
+    - family: QPC v2 p93
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p93.ttf
+
+    - family: QPC v2 p94
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p94.ttf
+
+    - family: QPC v2 p95
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p95.ttf
+
+    - family: QPC v2 p96
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p96.ttf
+
+    - family: QPC v2 p97
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p97.ttf
+
+    - family: QPC v2 p98
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p98.ttf
+
+    - family: QPC v2 p99
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p99.ttf
+
+    - family: QPC v2 p100
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p100.ttf
+
+    - family: QPC v2 p101
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p101.ttf
+
+    - family: QPC v2 p102
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p102.ttf
+
+    - family: QPC v2 p103
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p103.ttf
+
+    - family: QPC v2 p104
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p104.ttf
+
+    - family: QPC v2 p105
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p105.ttf
+
+    - family: QPC v2 p106
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p106.ttf
+
+    - family: QPC v2 p107
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p107.ttf
+
+    - family: QPC v2 p108
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p108.ttf
+
+    - family: QPC v2 p109
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p109.ttf
+
+    - family: QPC v2 p110
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p110.ttf
+
+    - family: QPC v2 p111
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p111.ttf
+
+    - family: QPC v2 p112
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p112.ttf
+
+    - family: QPC v2 p113
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p113.ttf
+
+    - family: QPC v2 p114
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p114.ttf
+
+    - family: QPC v2 p115
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p115.ttf
+
+    - family: QPC v2 p116
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p116.ttf
+
+    - family: QPC v2 p117
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p117.ttf
+
+    - family: QPC v2 p118
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p118.ttf
+
+    - family: QPC v2 p119
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p119.ttf
+
+    - family: QPC v2 p120
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p120.ttf
+
+    - family: QPC v2 p121
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p121.ttf
+
+    - family: QPC v2 p122
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p122.ttf
+
+    - family: QPC v2 p123
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p123.ttf
+
+    - family: QPC v2 p124
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p124.ttf
+
+    - family: QPC v2 p125
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p125.ttf
+
+    - family: QPC v2 p126
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p126.ttf
+
+    - family: QPC v2 p127
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p127.ttf
+
+    - family: QPC v2 p128
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p128.ttf
+
+    - family: QPC v2 p129
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p129.ttf
+
+    - family: QPC v2 p130
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p130.ttf
+
+    - family: QPC v2 p131
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p131.ttf
+
+    - family: QPC v2 p132
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p132.ttf
+
+    - family: QPC v2 p133
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p133.ttf
+
+    - family: QPC v2 p134
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p134.ttf
+
+    - family: QPC v2 p135
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p135.ttf
+
+    - family: QPC v2 p136
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p136.ttf
+
+    - family: QPC v2 p137
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p137.ttf
+
+    - family: QPC v2 p138
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p138.ttf
+
+    - family: QPC v2 p139
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p139.ttf
+
+    - family: QPC v2 p140
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p140.ttf
+
+    - family: QPC v2 p141
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p141.ttf
+
+    - family: QPC v2 p142
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p142.ttf
+
+    - family: QPC v2 p143
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p143.ttf
+
+    - family: QPC v2 p144
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p144.ttf
+
+    - family: QPC v2 p145
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p145.ttf
+
+    - family: QPC v2 p146
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p146.ttf
+
+    - family: QPC v2 p147
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p147.ttf
+
+    - family: QPC v2 p148
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p148.ttf
+
+    - family: QPC v2 p149
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p149.ttf
+
+    - family: QPC v2 p150
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p150.ttf
+
+    - family: QPC v2 p151
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p151.ttf
+
+    - family: QPC v2 p152
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p152.ttf
+
+    - family: QPC v2 p153
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p153.ttf
+
+    - family: QPC v2 p154
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p154.ttf
+
+    - family: QPC v2 p155
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p155.ttf
+
+    - family: QPC v2 p156
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p156.ttf
+
+    - family: QPC v2 p157
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p157.ttf
+
+    - family: QPC v2 p158
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p158.ttf
+
+    - family: QPC v2 p159
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p159.ttf
+
+    - family: QPC v2 p160
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p160.ttf
+
+    - family: QPC v2 p161
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p161.ttf
+
+    - family: QPC v2 p162
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p162.ttf
+
+    - family: QPC v2 p163
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p163.ttf
+
+    - family: QPC v2 p164
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p164.ttf
+
+    - family: QPC v2 p165
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p165.ttf
+
+    - family: QPC v2 p166
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p166.ttf
+
+    - family: QPC v2 p167
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p167.ttf
+
+    - family: QPC v2 p168
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p168.ttf
+
+    - family: QPC v2 p169
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p169.ttf
+
+    - family: QPC v2 p170
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p170.ttf
+
+    - family: QPC v2 p171
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p171.ttf
+
+    - family: QPC v2 p172
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p172.ttf
+
+    - family: QPC v2 p173
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p173.ttf
+
+    - family: QPC v2 p174
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p174.ttf
+
+    - family: QPC v2 p175
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p175.ttf
+
+    - family: QPC v2 p176
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p176.ttf
+
+    - family: QPC v2 p177
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p177.ttf
+
+    - family: QPC v2 p178
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p178.ttf
+
+    - family: QPC v2 p179
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p179.ttf
+
+    - family: QPC v2 p180
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p180.ttf
+
+    - family: QPC v2 p181
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p181.ttf
+
+    - family: QPC v2 p182
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p182.ttf
+
+    - family: QPC v2 p183
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p183.ttf
+
+    - family: QPC v2 p184
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p184.ttf
+
+    - family: QPC v2 p185
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p185.ttf
+
+    - family: QPC v2 p186
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p186.ttf
+
+    - family: QPC v2 p187
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p187.ttf
+
+    - family: QPC v2 p188
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p188.ttf
+
+    - family: QPC v2 p189
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p189.ttf
+
+    - family: QPC v2 p190
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p190.ttf
+
+    - family: QPC v2 p191
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p191.ttf
+
+    - family: QPC v2 p192
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p192.ttf
+
+    - family: QPC v2 p193
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p193.ttf
+
+    - family: QPC v2 p194
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p194.ttf
+
+    - family: QPC v2 p195
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p195.ttf
+
+    - family: QPC v2 p196
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p196.ttf
+
+    - family: QPC v2 p197
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p197.ttf
+
+    - family: QPC v2 p198
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p198.ttf
+
+    - family: QPC v2 p199
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p199.ttf
+
+    - family: QPC v2 p200
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p200.ttf
+
+    - family: QPC v2 p201
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p201.ttf
+
+    - family: QPC v2 p202
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p202.ttf
+
+    - family: QPC v2 p203
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p203.ttf
+
+    - family: QPC v2 p204
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p204.ttf
+
+    - family: QPC v2 p205
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p205.ttf
+
+    - family: QPC v2 p206
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p206.ttf
+
+    - family: QPC v2 p207
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p207.ttf
+
+    - family: QPC v2 p208
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p208.ttf
+
+    - family: QPC v2 p209
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p209.ttf
+
+    - family: QPC v2 p210
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p210.ttf
+
+    - family: QPC v2 p211
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p211.ttf
+
+    - family: QPC v2 p212
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p212.ttf
+
+    - family: QPC v2 p213
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p213.ttf
+
+    - family: QPC v2 p214
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p214.ttf
+
+    - family: QPC v2 p215
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p215.ttf
+
+    - family: QPC v2 p216
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p216.ttf
+
+    - family: QPC v2 p217
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p217.ttf
+
+    - family: QPC v2 p218
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p218.ttf
+
+    - family: QPC v2 p219
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p219.ttf
+
+    - family: QPC v2 p220
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p220.ttf
+
+    - family: QPC v2 p221
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p221.ttf
+
+    - family: QPC v2 p222
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p222.ttf
+
+    - family: QPC v2 p223
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p223.ttf
+
+    - family: QPC v2 p224
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p224.ttf
+
+    - family: QPC v2 p225
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p225.ttf
+
+    - family: QPC v2 p226
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p226.ttf
+
+    - family: QPC v2 p227
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p227.ttf
+
+    - family: QPC v2 p228
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p228.ttf
+
+    - family: QPC v2 p229
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p229.ttf
+
+    - family: QPC v2 p230
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p230.ttf
+
+    - family: QPC v2 p231
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p231.ttf
+
+    - family: QPC v2 p232
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p232.ttf
+
+    - family: QPC v2 p233
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p233.ttf
+
+    - family: QPC v2 p234
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p234.ttf
+
+    - family: QPC v2 p235
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p235.ttf
+
+    - family: QPC v2 p236
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p236.ttf
+
+    - family: QPC v2 p237
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p237.ttf
+
+    - family: QPC v2 p238
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p238.ttf
+
+    - family: QPC v2 p239
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p239.ttf
+
+    - family: QPC v2 p240
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p240.ttf
+
+    - family: QPC v2 p241
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p241.ttf
+
+    - family: QPC v2 p242
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p242.ttf
+
+    - family: QPC v2 p243
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p243.ttf
+
+    - family: QPC v2 p244
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p244.ttf
+
+    - family: QPC v2 p245
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p245.ttf
+
+    - family: QPC v2 p246
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p246.ttf
+
+    - family: QPC v2 p247
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p247.ttf
+
+    - family: QPC v2 p248
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p248.ttf
+
+    - family: QPC v2 p249
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p249.ttf
+
+    - family: QPC v2 p250
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p250.ttf
+
+    - family: QPC v2 p251
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p251.ttf
+
+    - family: QPC v2 p252
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p252.ttf
+
+    - family: QPC v2 p253
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p253.ttf
+
+    - family: QPC v2 p254
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p254.ttf
+
+    - family: QPC v2 p255
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p255.ttf
+
+    - family: QPC v2 p256
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p256.ttf
+
+    - family: QPC v2 p257
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p257.ttf
+
+    - family: QPC v2 p258
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p258.ttf
+
+    - family: QPC v2 p259
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p259.ttf
+
+    - family: QPC v2 p260
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p260.ttf
+
+    - family: QPC v2 p261
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p261.ttf
+
+    - family: QPC v2 p262
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p262.ttf
+
+    - family: QPC v2 p263
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p263.ttf
+
+    - family: QPC v2 p264
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p264.ttf
+
+    - family: QPC v2 p265
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p265.ttf
+
+    - family: QPC v2 p266
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p266.ttf
+
+    - family: QPC v2 p267
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p267.ttf
+
+    - family: QPC v2 p268
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p268.ttf
+
+    - family: QPC v2 p269
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p269.ttf
+
+    - family: QPC v2 p270
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p270.ttf
+
+    - family: QPC v2 p271
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p271.ttf
+
+    - family: QPC v2 p272
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p272.ttf
+
+    - family: QPC v2 p273
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p273.ttf
+
+    - family: QPC v2 p274
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p274.ttf
+
+    - family: QPC v2 p275
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p275.ttf
+
+    - family: QPC v2 p276
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p276.ttf
+
+    - family: QPC v2 p277
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p277.ttf
+
+    - family: QPC v2 p278
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p278.ttf
+
+    - family: QPC v2 p279
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p279.ttf
+
+    - family: QPC v2 p280
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p280.ttf
+
+    - family: QPC v2 p281
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p281.ttf
+
+    - family: QPC v2 p282
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p282.ttf
+
+    - family: QPC v2 p283
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p283.ttf
+
+    - family: QPC v2 p284
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p284.ttf
+
+    - family: QPC v2 p285
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p285.ttf
+
+    - family: QPC v2 p286
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p286.ttf
+
+    - family: QPC v2 p287
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p287.ttf
+
+    - family: QPC v2 p288
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p288.ttf
+
+    - family: QPC v2 p289
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p289.ttf
+
+    - family: QPC v2 p290
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p290.ttf
+
+    - family: QPC v2 p291
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p291.ttf
+
+    - family: QPC v2 p292
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p292.ttf
+
+    - family: QPC v2 p293
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p293.ttf
+
+    - family: QPC v2 p294
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p294.ttf
+
+    - family: QPC v2 p295
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p295.ttf
+
+    - family: QPC v2 p296
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p296.ttf
+
+    - family: QPC v2 p297
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p297.ttf
+
+    - family: QPC v2 p298
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p298.ttf
+
+    - family: QPC v2 p299
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p299.ttf
+
+    - family: QPC v2 p300
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p300.ttf
+
+    - family: QPC v2 p301
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p301.ttf
+
+    - family: QPC v2 p302
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p302.ttf
+
+    - family: QPC v2 p303
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p303.ttf
+
+    - family: QPC v2 p304
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p304.ttf
+
+    - family: QPC v2 p305
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p305.ttf
+
+    - family: QPC v2 p306
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p306.ttf
+
+    - family: QPC v2 p307
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p307.ttf
+
+    - family: QPC v2 p308
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p308.ttf
+
+    - family: QPC v2 p309
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p309.ttf
+
+    - family: QPC v2 p310
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p310.ttf
+
+    - family: QPC v2 p311
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p311.ttf
+
+    - family: QPC v2 p312
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p312.ttf
+
+    - family: QPC v2 p313
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p313.ttf
+
+    - family: QPC v2 p314
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p314.ttf
+
+    - family: QPC v2 p315
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p315.ttf
+
+    - family: QPC v2 p316
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p316.ttf
+
+    - family: QPC v2 p317
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p317.ttf
+
+    - family: QPC v2 p318
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p318.ttf
+
+    - family: QPC v2 p319
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p319.ttf
+
+    - family: QPC v2 p320
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p320.ttf
+
+    - family: QPC v2 p321
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p321.ttf
+
+    - family: QPC v2 p322
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p322.ttf
+
+    - family: QPC v2 p323
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p323.ttf
+
+    - family: QPC v2 p324
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p324.ttf
+
+    - family: QPC v2 p325
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p325.ttf
+
+    - family: QPC v2 p326
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p326.ttf
+
+    - family: QPC v2 p327
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p327.ttf
+
+    - family: QPC v2 p328
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p328.ttf
+
+    - family: QPC v2 p329
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p329.ttf
+
+    - family: QPC v2 p330
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p330.ttf
+
+    - family: QPC v2 p331
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p331.ttf
+
+    - family: QPC v2 p332
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p332.ttf
+
+    - family: QPC v2 p333
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p333.ttf
+
+    - family: QPC v2 p334
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p334.ttf
+
+    - family: QPC v2 p335
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p335.ttf
+
+    - family: QPC v2 p336
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p336.ttf
+
+    - family: QPC v2 p337
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p337.ttf
+
+    - family: QPC v2 p338
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p338.ttf
+
+    - family: QPC v2 p339
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p339.ttf
+
+    - family: QPC v2 p340
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p340.ttf
+
+    - family: QPC v2 p341
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p341.ttf
+
+    - family: QPC v2 p342
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p342.ttf
+
+    - family: QPC v2 p343
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p343.ttf
+
+    - family: QPC v2 p344
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p344.ttf
+
+    - family: QPC v2 p345
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p345.ttf
+
+    - family: QPC v2 p346
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p346.ttf
+
+    - family: QPC v2 p347
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p347.ttf
+
+    - family: QPC v2 p348
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p348.ttf
+
+    - family: QPC v2 p349
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p349.ttf
+
+    - family: QPC v2 p350
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p350.ttf
+
+    - family: QPC v2 p351
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p351.ttf
+
+    - family: QPC v2 p352
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p352.ttf
+
+    - family: QPC v2 p353
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p353.ttf
+
+    - family: QPC v2 p354
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p354.ttf
+
+    - family: QPC v2 p355
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p355.ttf
+
+    - family: QPC v2 p356
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p356.ttf
+
+    - family: QPC v2 p357
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p357.ttf
+
+    - family: QPC v2 p358
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p358.ttf
+
+    - family: QPC v2 p359
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p359.ttf
+
+    - family: QPC v2 p360
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p360.ttf
+
+    - family: QPC v2 p361
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p361.ttf
+
+    - family: QPC v2 p362
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p362.ttf
+
+    - family: QPC v2 p363
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p363.ttf
+
+    - family: QPC v2 p364
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p364.ttf
+
+    - family: QPC v2 p365
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p365.ttf
+
+    - family: QPC v2 p366
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p366.ttf
+
+    - family: QPC v2 p367
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p367.ttf
+
+    - family: QPC v2 p368
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p368.ttf
+
+    - family: QPC v2 p369
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p369.ttf
+
+    - family: QPC v2 p370
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p370.ttf
+
+    - family: QPC v2 p371
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p371.ttf
+
+    - family: QPC v2 p372
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p372.ttf
+
+    - family: QPC v2 p373
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p373.ttf
+
+    - family: QPC v2 p374
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p374.ttf
+
+    - family: QPC v2 p375
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p375.ttf
+
+    - family: QPC v2 p376
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p376.ttf
+
+    - family: QPC v2 p377
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p377.ttf
+
+    - family: QPC v2 p378
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p378.ttf
+
+    - family: QPC v2 p379
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p379.ttf
+
+    - family: QPC v2 p380
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p380.ttf
+
+    - family: QPC v2 p381
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p381.ttf
+
+    - family: QPC v2 p382
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p382.ttf
+
+    - family: QPC v2 p383
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p383.ttf
+
+    - family: QPC v2 p384
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p384.ttf
+
+    - family: QPC v2 p385
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p385.ttf
+
+    - family: QPC v2 p386
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p386.ttf
+
+    - family: QPC v2 p387
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p387.ttf
+
+    - family: QPC v2 p388
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p388.ttf
+
+    - family: QPC v2 p389
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p389.ttf
+
+    - family: QPC v2 p390
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p390.ttf
+
+    - family: QPC v2 p391
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p391.ttf
+
+    - family: QPC v2 p392
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p392.ttf
+
+    - family: QPC v2 p393
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p393.ttf
+
+    - family: QPC v2 p394
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p394.ttf
+
+    - family: QPC v2 p395
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p395.ttf
+
+    - family: QPC v2 p396
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p396.ttf
+
+    - family: QPC v2 p397
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p397.ttf
+
+    - family: QPC v2 p398
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p398.ttf
+
+    - family: QPC v2 p399
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p399.ttf
+
+    - family: QPC v2 p400
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p400.ttf
+
+    - family: QPC v2 p401
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p401.ttf
+
+    - family: QPC v2 p402
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p402.ttf
+
+    - family: QPC v2 p403
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p403.ttf
+
+    - family: QPC v2 p404
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p404.ttf
+
+    - family: QPC v2 p405
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p405.ttf
+
+    - family: QPC v2 p406
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p406.ttf
+
+    - family: QPC v2 p407
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p407.ttf
+
+    - family: QPC v2 p408
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p408.ttf
+
+    - family: QPC v2 p409
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p409.ttf
+
+    - family: QPC v2 p410
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p410.ttf
+
+    - family: QPC v2 p411
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p411.ttf
+
+    - family: QPC v2 p412
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p412.ttf
+
+    - family: QPC v2 p413
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p413.ttf
+
+    - family: QPC v2 p414
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p414.ttf
+
+    - family: QPC v2 p415
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p415.ttf
+
+    - family: QPC v2 p416
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p416.ttf
+
+    - family: QPC v2 p417
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p417.ttf
+
+    - family: QPC v2 p418
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p418.ttf
+
+    - family: QPC v2 p419
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p419.ttf
+
+    - family: QPC v2 p420
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p420.ttf
+
+    - family: QPC v2 p421
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p421.ttf
+
+    - family: QPC v2 p422
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p422.ttf
+
+    - family: QPC v2 p423
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p423.ttf
+
+    - family: QPC v2 p424
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p424.ttf
+
+    - family: QPC v2 p425
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p425.ttf
+
+    - family: QPC v2 p426
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p426.ttf
+
+    - family: QPC v2 p427
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p427.ttf
+
+    - family: QPC v2 p428
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p428.ttf
+
+    - family: QPC v2 p429
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p429.ttf
+
+    - family: QPC v2 p430
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p430.ttf
+
+    - family: QPC v2 p431
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p431.ttf
+
+    - family: QPC v2 p432
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p432.ttf
+
+    - family: QPC v2 p433
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p433.ttf
+
+    - family: QPC v2 p434
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p434.ttf
+
+    - family: QPC v2 p435
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p435.ttf
+
+    - family: QPC v2 p436
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p436.ttf
+
+    - family: QPC v2 p437
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p437.ttf
+
+    - family: QPC v2 p438
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p438.ttf
+
+    - family: QPC v2 p439
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p439.ttf
+
+    - family: QPC v2 p440
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p440.ttf
+
+    - family: QPC v2 p441
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p441.ttf
+
+    - family: QPC v2 p442
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p442.ttf
+
+    - family: QPC v2 p443
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p443.ttf
+
+    - family: QPC v2 p444
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p444.ttf
+
+    - family: QPC v2 p445
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p445.ttf
+
+    - family: QPC v2 p446
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p446.ttf
+
+    - family: QPC v2 p447
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p447.ttf
+
+    - family: QPC v2 p448
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p448.ttf
+
+    - family: QPC v2 p449
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p449.ttf
+
+    - family: QPC v2 p450
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p450.ttf
+
+    - family: QPC v2 p451
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p451.ttf
+
+    - family: QPC v2 p452
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p452.ttf
+
+    - family: QPC v2 p453
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p453.ttf
+
+    - family: QPC v2 p454
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p454.ttf
+
+    - family: QPC v2 p455
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p455.ttf
+
+    - family: QPC v2 p456
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p456.ttf
+
+    - family: QPC v2 p457
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p457.ttf
+
+    - family: QPC v2 p458
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p458.ttf
+
+    - family: QPC v2 p459
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p459.ttf
+
+    - family: QPC v2 p460
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p460.ttf
+
+    - family: QPC v2 p461
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p461.ttf
+
+    - family: QPC v2 p462
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p462.ttf
+
+    - family: QPC v2 p463
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p463.ttf
+
+    - family: QPC v2 p464
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p464.ttf
+
+    - family: QPC v2 p465
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p465.ttf
+
+    - family: QPC v2 p466
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p466.ttf
+
+    - family: QPC v2 p467
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p467.ttf
+
+    - family: QPC v2 p468
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p468.ttf
+
+    - family: QPC v2 p469
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p469.ttf
+
+    - family: QPC v2 p470
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p470.ttf
+
+    - family: QPC v2 p471
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p471.ttf
+
+    - family: QPC v2 p472
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p472.ttf
+
+    - family: QPC v2 p473
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p473.ttf
+
+    - family: QPC v2 p474
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p474.ttf
+
+    - family: QPC v2 p475
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p475.ttf
+
+    - family: QPC v2 p476
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p476.ttf
+
+    - family: QPC v2 p477
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p477.ttf
+
+    - family: QPC v2 p478
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p478.ttf
+
+    - family: QPC v2 p479
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p479.ttf
+
+    - family: QPC v2 p480
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p480.ttf
+
+    - family: QPC v2 p481
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p481.ttf
+
+    - family: QPC v2 p482
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p482.ttf
+
+    - family: QPC v2 p483
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p483.ttf
+
+    - family: QPC v2 p484
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p484.ttf
+
+    - family: QPC v2 p485
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p485.ttf
+
+    - family: QPC v2 p486
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p486.ttf
+
+    - family: QPC v2 p487
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p487.ttf
+
+    - family: QPC v2 p488
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p488.ttf
+
+    - family: QPC v2 p489
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p489.ttf
+
+    - family: QPC v2 p490
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p490.ttf
+
+    - family: QPC v2 p491
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p491.ttf
+
+    - family: QPC v2 p492
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p492.ttf
+
+    - family: QPC v2 p493
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p493.ttf
+
+    - family: QPC v2 p494
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p494.ttf
+
+    - family: QPC v2 p495
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p495.ttf
+
+    - family: QPC v2 p496
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p496.ttf
+
+    - family: QPC v2 p497
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p497.ttf
+
+    - family: QPC v2 p498
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p498.ttf
+
+    - family: QPC v2 p499
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p499.ttf
+
+    - family: QPC v2 p500
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p500.ttf
+
+    - family: QPC v2 p501
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p501.ttf
+
+    - family: QPC v2 p502
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p502.ttf
+
+    - family: QPC v2 p503
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p503.ttf
+
+    - family: QPC v2 p504
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p504.ttf
+
+    - family: QPC v2 p505
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p505.ttf
+
+    - family: QPC v2 p506
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p506.ttf
+
+    - family: QPC v2 p507
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p507.ttf
+
+    - family: QPC v2 p508
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p508.ttf
+
+    - family: QPC v2 p509
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p509.ttf
+
+    - family: QPC v2 p510
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p510.ttf
+
+    - family: QPC v2 p511
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p511.ttf
+
+    - family: QPC v2 p512
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p512.ttf
+
+    - family: QPC v2 p513
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p513.ttf
+
+    - family: QPC v2 p514
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p514.ttf
+
+    - family: QPC v2 p515
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p515.ttf
+
+    - family: QPC v2 p516
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p516.ttf
+
+    - family: QPC v2 p517
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p517.ttf
+
+    - family: QPC v2 p518
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p518.ttf
+
+    - family: QPC v2 p519
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p519.ttf
+
+    - family: QPC v2 p520
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p520.ttf
+
+    - family: QPC v2 p521
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p521.ttf
+
+    - family: QPC v2 p522
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p522.ttf
+
+    - family: QPC v2 p523
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p523.ttf
+
+    - family: QPC v2 p524
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p524.ttf
+
+    - family: QPC v2 p525
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p525.ttf
+
+    - family: QPC v2 p526
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p526.ttf
+
+    - family: QPC v2 p527
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p527.ttf
+
+    - family: QPC v2 p528
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p528.ttf
+
+    - family: QPC v2 p529
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p529.ttf
+
+    - family: QPC v2 p530
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p530.ttf
+
+    - family: QPC v2 p531
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p531.ttf
+
+    - family: QPC v2 p532
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p532.ttf
+
+    - family: QPC v2 p533
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p533.ttf
+
+    - family: QPC v2 p534
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p534.ttf
+
+    - family: QPC v2 p535
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p535.ttf
+
+    - family: QPC v2 p536
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p536.ttf
+
+    - family: QPC v2 p537
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p537.ttf
+
+    - family: QPC v2 p538
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p538.ttf
+
+    - family: QPC v2 p539
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p539.ttf
+
+    - family: QPC v2 p540
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p540.ttf
+
+    - family: QPC v2 p541
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p541.ttf
+
+    - family: QPC v2 p542
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p542.ttf
+
+    - family: QPC v2 p543
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p543.ttf
+
+    - family: QPC v2 p544
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p544.ttf
+
+    - family: QPC v2 p545
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p545.ttf
+
+    - family: QPC v2 p546
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p546.ttf
+
+    - family: QPC v2 p547
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p547.ttf
+
+    - family: QPC v2 p548
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p548.ttf
+
+    - family: QPC v2 p549
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p549.ttf
+
+    - family: QPC v2 p550
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p550.ttf
+
+    - family: QPC v2 p551
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p551.ttf
+
+    - family: QPC v2 p552
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p552.ttf
+
+    - family: QPC v2 p553
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p553.ttf
+
+    - family: QPC v2 p554
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p554.ttf
+
+    - family: QPC v2 p555
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p555.ttf
+
+    - family: QPC v2 p556
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p556.ttf
+
+    - family: QPC v2 p557
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p557.ttf
+
+    - family: QPC v2 p558
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p558.ttf
+
+    - family: QPC v2 p559
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p559.ttf
+
+    - family: QPC v2 p560
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p560.ttf
+
+    - family: QPC v2 p561
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p561.ttf
+
+    - family: QPC v2 p562
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p562.ttf
+
+    - family: QPC v2 p563
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p563.ttf
+
+    - family: QPC v2 p564
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p564.ttf
+
+    - family: QPC v2 p565
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p565.ttf
+
+    - family: QPC v2 p566
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p566.ttf
+
+    - family: QPC v2 p567
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p567.ttf
+
+    - family: QPC v2 p568
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p568.ttf
+
+    - family: QPC v2 p569
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p569.ttf
+
+    - family: QPC v2 p570
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p570.ttf
+
+    - family: QPC v2 p571
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p571.ttf
+
+    - family: QPC v2 p572
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p572.ttf
+
+    - family: QPC v2 p573
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p573.ttf
+
+    - family: QPC v2 p574
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p574.ttf
+
+    - family: QPC v2 p575
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p575.ttf
+
+    - family: QPC v2 p576
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p576.ttf
+
+    - family: QPC v2 p577
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p577.ttf
+
+    - family: QPC v2 p578
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p578.ttf
+
+    - family: QPC v2 p579
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p579.ttf
+
+    - family: QPC v2 p580
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p580.ttf
+
+    - family: QPC v2 p581
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p581.ttf
+
+    - family: QPC v2 p582
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p582.ttf
+
+    - family: QPC v2 p583
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p583.ttf
+
+    - family: QPC v2 p584
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p584.ttf
+
+    - family: QPC v2 p585
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p585.ttf
+
+    - family: QPC v2 p586
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p586.ttf
+
+    - family: QPC v2 p587
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p587.ttf
+
+    - family: QPC v2 p588
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p588.ttf
+
+    - family: QPC v2 p589
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p589.ttf
+
+    - family: QPC v2 p590
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p590.ttf
+
+    - family: QPC v2 p591
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p591.ttf
+
+    - family: QPC v2 p592
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p592.ttf
+
+    - family: QPC v2 p593
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p593.ttf
+
+    - family: QPC v2 p594
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p594.ttf
+
+    - family: QPC v2 p595
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p595.ttf
+
+    - family: QPC v2 p596
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p596.ttf
+
+    - family: QPC v2 p597
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p597.ttf
+
+    - family: QPC v2 p598
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p598.ttf
+
+    - family: QPC v2 p599
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p599.ttf
+
+    - family: QPC v2 p600
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p600.ttf
+
+    - family: QPC v2 p601
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p601.ttf
+
+    - family: QPC v2 p602
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p602.ttf
+
+    - family: QPC v2 p603
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p603.ttf
+
+    - family: QPC v2 p604
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/p604.ttf
