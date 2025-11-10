@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'dart:async';
 
 import 'src/data/line.dart';
 
@@ -13,20 +14,45 @@ Future<dynamic> loadJsonData() async {
   return data;
 }
 
-
-
-class QuranViewer extends StatefulWidget {
+class QuranViewer extends StatelessWidget {
   const QuranViewer({super.key});
 
   static const routeName = '/quran';
 
   @override
-  State<QuranViewer> createState() => _QuranViewerState();
+  Widget build(BuildContext context) {
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: FutureBuilder(
+        future: loadJsonData(),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator();
+          } else if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          } else {
+            return Book(data: snapshot.data);
+          }
+        },
+      ),
+    );
+  }
 }
 
-class _QuranViewerState extends State<QuranViewer> {
-  var pageNumber = 1;
+class Book extends StatefulWidget {
+  const Book({super.key, required this.data});
+
+  final data;
+
+  @override
+  State<Book> createState() => _BookState();
+}
+
+class _BookState extends State<Book> {
   final focusNode = FocusNode();
+
+  final pageList = <Widget>[];
+  final _key = GlobalKey<AnimatedListState>();
 
   @override
   void dispose() {
@@ -35,32 +61,111 @@ class _QuranViewerState extends State<QuranViewer> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    var pages = widget.data as Map<String, dynamic>;
+    for (var page in pages.values) {
+      _addPage(page as List);
+      if (pageList.length >= 4000) break;
+    }
+  }
+
+  _addPage(linesJson) {
+    linesJson as List<dynamic>;
+    final lines = linesJson.map((line) => Line.fromJson(line)).toList();
+    final pageNumber = lines.first.pageNumber;
+    pageList.add(
+      PageWidget(
+        key: Key('page$pageNumber'),
+        pageNumber: pageNumber,
+        lines: lines,
+        focusNode: focusNode,
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: const Text('next'),
-          onPressed: () => setState(() {
-            pageNumber += 1;
-          }),
-        ),
-        body: FutureBuilder(
-          future: loadJsonData(),
-          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
-            } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
-            } else {
-              var text = snapshot.data[pageNumber.toString()] as List;
-              var lines = text
-                  .map((line) => Line.fromJson(line as Map<String, dynamic>))
-                  .toList();
-              return PageWidget(pageNumber: pageNumber, lines: lines, focusNode: focusNode);
-            }
-          },
-        ),
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: const Text('next'),
+        onPressed: () => setState(() {
+          _key.currentState?.insertItem(pageList.length - 1);
+
+          _key.currentState?.removeItem(0, (context, builder) {
+            return pageList.removeAt(0);
+          });
+        }),
+      ),
+      body: ListView.builder(
+        key: _key,
+        itemCount: pageList.length,
+        scrollDirection: Axis.horizontal,
+        primary: true,
+        itemBuilder: (context, index) {
+          return pageList[index];
+        },
+        clipBehavior: Clip.none,
+        // children: [
+        //   AnimatedPositioned(
+        //     duration: Duration(milliseconds: 1000),
+        //     left: 1000,
+        //     child: Container(
+        //       key: Key('page${pageNumber - 1}'),
+        //       height: 100,
+        //       width: 100,
+        //       color: Colors.red,
+        //       child: Text('${pageNumber - 1}'),
+        //     ),
+        //   ),
+        //   AnimatedPositioned(
+        //     key: Key('page$pageNumber'),
+        //     duration: Duration(milliseconds: 1000),
+        //     child: Container(
+        //       height: 100,
+        //       width: 100,
+        //       color: Colors.blue,
+        //       child: Text('$pageNumber'),
+        //     ),
+        //   ),
+        //   AnimatedPositioned(
+        //     key: Key('page${pageNumber + 1}'),
+        //     duration: Duration(milliseconds: 1000),
+        //     left: -100,
+        //     child: Container(
+        //       height: 100,
+        //       width: 100,
+        //       color: Colors.purple,
+        //       child: Text('${pageNumber + 1}'),
+        //     ),
+        //   ),
+        // ],
+        // children: [
+        //   if(pageNumber>1) AnimatedPositioned(right:  MediaQuery.of(context).size.width,
+        //     duration: Duration(milliseconds: 100),
+        //     child: PageWidget(
+        //         key:Key('page${pageNumber - 1}'),
+        //         pageNumber: pageNumber-1,
+        //         lines: lines,
+        //         focusNode: focusNode),
+        //   ),
+        //   AnimatedPositioned(
+        //     duration: Duration(milliseconds: 100),
+        //     child: PageWidget(
+        //         key:Key('page$pageNumber'),
+        //         pageNumber: pageNumber,
+        //         lines: lines,
+        //         focusNode: focusNode),
+        //   ),
+        //   if(pageNumber < 604)AnimatedPositioned(left: MediaQuery.of(context).size.width,
+        //     duration: Duration(milliseconds: 100),
+        //     child: PageWidget(
+        //     key:Key('page${pageNumber + 1}'),
+        //         pageNumber: pageNumber+1,
+        //         lines: lines,
+        //         focusNode: focusNode),
+        //   ),
+        // ],
       ),
     );
   }
@@ -86,7 +191,8 @@ class PageWidget extends StatelessWidget {
         right: (pageNumber % 2 == 0) ? 10 : 100,
         left: (pageNumber % 2 == 0) ? 100 : 10,
       ),
-      child: ListView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: lines
             .map(
               (line) => Center(
