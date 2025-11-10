@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:async';
 
@@ -49,11 +51,11 @@ class Book extends StatefulWidget {
 class _BookState extends State<Book> {
   final focusNode = FocusNode();
   final pageList = <Widget>[];
-  final carouselController = CarouselController(initialItem: 0);
+  final pageController = PageController(initialPage: 0);
 
   @override
   void dispose() {
-    carouselController.dispose();
+    pageController.dispose();
     focusNode.dispose();
     super.dispose();
   }
@@ -85,18 +87,39 @@ class _BookState extends State<Book> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CarouselView.weighted(
-        enableSplash: false,
-        shape: Border(),
-        onTap: (index) {
-          final turnCount = MediaQuery.of(context).size.width > 1100 ? 2 : 1;
-          carouselController.animateToItem(index + turnCount);
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          pageController.animateToPage(
+            40,
+            duration: Duration(milliseconds: 400),
+            curve: Curves.easeInOut,
+          );
         },
-        itemSnapping: true,
-        controller: carouselController,
-        flexWeights: MediaQuery.of(context).size.width > 1100 ? [1, 1] : [1],
-        scrollDirection: Axis.horizontal,
-        children: pageList,
+      ),
+
+      body: GestureDetector(
+        onTap: () {
+          pageController.nextPage(
+            duration: Duration(milliseconds: 400),
+            curve: Curves.easeInOut,
+          );
+        },
+        child: PageView.builder(
+          controller: pageController,
+          clipBehavior: Clip.none,
+          pageSnapping: true,
+          padEnds: true,
+          itemCount: pageList.length,
+          scrollDirection: Axis.horizontal,
+          scrollBehavior: ScrollConfiguration.of(context).copyWith(
+            scrollbars: false,
+            dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
+          ),
+          itemBuilder: (BuildContext context, int index) {
+            return pageList[index];
+          },
+          // children: pageList,
+        ),
       ),
     );
   }
