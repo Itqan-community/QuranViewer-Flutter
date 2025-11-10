@@ -1,16 +1,17 @@
 import 'dart:convert';
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:quran_viewer/src/controller.dart';
 import 'dart:async';
 
 import 'src/data/line.dart';
 
 Future<dynamic> loadJsonData() async {
   final String response = await rootBundle.loadString(
-    'packages/quran_viewer/lib/assets/lines3.json',
+    'packages/quran_viewer/lib/assets/lines4.json',
   );
   final dynamic data = json.decode(response);
   return data;
@@ -40,23 +41,24 @@ class QuranViewer extends StatelessWidget {
 }
 
 class Book extends StatefulWidget {
-  const Book({super.key, required this.data});
+  const Book({super.key, required this.data, this.viewerController});
 
   final data;
+  final ViewerController? viewerController;
 
   @override
   State<Book> createState() => _BookState();
 }
 
 class _BookState extends State<Book> {
-  final focusNode = FocusNode();
   final pageList = <Widget>[];
   final pageController = PageController(initialPage: 0);
+  late final ViewerController viewerController =
+      widget.viewerController ?? ViewerController(ViewerConfig());
 
   @override
   void dispose() {
     pageController.dispose();
-    focusNode.dispose();
     super.dispose();
   }
 
@@ -77,9 +79,9 @@ class _BookState extends State<Book> {
     pageList.add(
       PageWidget(
         key: Key('page$pageNumber'),
+        viewerController: viewerController,
         pageNumber: pageNumber,
         lines: lines,
-        focusNode: focusNode,
       ),
     );
   }
@@ -90,19 +92,20 @@ class _BookState extends State<Book> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           pageController.animateToPage(
-            40,
-            duration: Duration(milliseconds: 400),
-            curve: Curves.easeInOut,
+            Random().nextInt(pageList.length),
+            duration: Duration(milliseconds: 120),
+            curve: Curves.fastLinearToSlowEaseIn,
           );
         },
       ),
 
       body: GestureDetector(
         onTap: () {
-          pageController.nextPage(
-            duration: Duration(milliseconds: 400),
-            curve: Curves.easeInOut,
-          );
+          viewerController.removeAyahFocus();
+          // pageController.nextPage(
+          //   duration: Duration(milliseconds: 400),
+          //   curve: Curves.easeInOut,
+          // );
         },
         child: PageView.builder(
           controller: pageController,
@@ -115,6 +118,7 @@ class _BookState extends State<Book> {
             scrollbars: false,
             dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
           ),
+          physics: const PageScrollPhysics(),
           itemBuilder: (BuildContext context, int index) {
             return pageList[index];
           },
@@ -130,20 +134,20 @@ class PageWidget extends StatelessWidget {
     super.key,
     required this.pageNumber,
     required this.lines,
-    required this.focusNode,
+    required this.viewerController,
   });
 
   final int pageNumber;
   final List<Line> lines;
-  final FocusNode focusNode;
+  final ViewerController viewerController;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: const Color.fromRGBO(223, 208, 185, .5),
       padding: EdgeInsets.only(
-        right: (pageNumber % 2 == 0) ? 0 : 50,
-        left: (pageNumber % 2 == 0) ? 50 : 0,
+        right: (pageNumber % 2 == 0) ? 5 : 50,
+        left: (pageNumber % 2 == 0) ? 50 : 5,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -157,8 +161,9 @@ class PageWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: lines
                   .map(
-                    (line) => Center(
-                      child: LineWidget(focusNode: focusNode, line: line),
+                    (line) => LineWidget(
+                      viewerController: viewerController,
+                      line: line,
                     ),
                   )
                   .toList(),
@@ -172,38 +177,36 @@ class PageWidget extends StatelessWidget {
 }
 
 class LineWidget extends StatelessWidget {
-  const LineWidget({super.key, required this.focusNode, required this.line});
+  const LineWidget({
+    super.key,
+    required this.line,
+    required this.viewerController,
+  });
 
   final Line line;
-  final FocusNode focusNode;
+  final ViewerController viewerController;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: (line.texts == null)
-            ? [Container()]
-            : line.texts!
-                  .split(' ')
-                  .map(
-                    (word) => WordWidget(
-                      focusNode: focusNode,
-                      onTap: () {
-                        focusNode.requestFocus();
-                        print(word);
-                      },
-                      word: word,
-                      style: TextStyle(
-                        fontFamily: 'QPC v2 p${line.pageNumber}',
-                        fontSize: 30,
-                      ),
-                    ),
-                  )
-                  .toList(),
-      ),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: line.words
+          .map(
+            (word) => WordWidget(
+              viewerController: viewerController,
+              onTap: () {
+                // move focus to the previous word
+                print(word);
+              },
+              word: word,
+              style: TextStyle(
+                fontFamily: 'QPC v2 p${line.pageNumber}',
+                fontSize: 30,
+              ),
+            ),
+          )
+          .toList(),
     );
   }
 }
@@ -213,23 +216,34 @@ class WordWidget extends StatelessWidget {
     super.key,
     required this.word,
     required this.style,
-    required this.focusNode,
     required this.onTap,
+    required this.viewerController,
   });
 
-  final String word;
+  final Word word;
   final TextStyle style;
-  final FocusNode focusNode;
   final Function() onTap;
+  final ViewerController viewerController;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      focusColor: Colors.green,
-      highlightColor: Colors.blue,
-      focusNode: focusNode,
-      onTap: onTap,
-      child: Text(word, style: style),
+    return ListenableBuilder(
+      listenable: viewerController,
+      builder: (BuildContext context, Widget? child) => Container(
+        padding: const EdgeInsets.symmetric(vertical: 4.0),
+        color: viewerController.value.focusedAyahId == word.ayahId
+            ? Colors.blueGrey
+            : Colors.transparent,
+        child: InkWell(
+          key: Key('word${word.id}'),
+          highlightColor: Colors.blue,
+          onTap: () {
+            viewerController.focusOnAyah(word.ayahId);
+            onTap();
+          },
+          child: Text(word.glyph, style: style),
+        ),
+      ),
     );
   }
 }
