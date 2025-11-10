@@ -17,8 +17,6 @@ Future<dynamic> loadJsonData() async {
 class QuranViewer extends StatelessWidget {
   const QuranViewer({super.key});
 
-  static const routeName = '/quran';
-
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -50,12 +48,12 @@ class Book extends StatefulWidget {
 
 class _BookState extends State<Book> {
   final focusNode = FocusNode();
-
   final pageList = <Widget>[];
-  final _key = GlobalKey<AnimatedListState>();
+  final carouselController = CarouselController(initialItem: 0);
 
   @override
   void dispose() {
+    carouselController.dispose();
     focusNode.dispose();
     super.dispose();
   }
@@ -66,7 +64,7 @@ class _BookState extends State<Book> {
     var pages = widget.data as Map<String, dynamic>;
     for (var page in pages.values) {
       _addPage(page as List);
-      if (pageList.length >= 4000) break;
+      if (pageList.length >= 50) break;
     }
   }
 
@@ -87,85 +85,18 @@ class _BookState extends State<Book> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: const Text('next'),
-        onPressed: () => setState(() {
-          _key.currentState?.insertItem(pageList.length - 1);
-
-          _key.currentState?.removeItem(0, (context, builder) {
-            return pageList.removeAt(0);
-          });
-        }),
-      ),
-      body: ListView.builder(
-        key: _key,
-        itemCount: pageList.length,
-        scrollDirection: Axis.horizontal,
-        primary: true,
-        itemBuilder: (context, index) {
-          return pageList[index];
+      body: CarouselView.weighted(
+        enableSplash: false,
+        shape: Border(),
+        onTap: (index) {
+          final turnCount = MediaQuery.of(context).size.width > 1100 ? 2 : 1;
+          carouselController.animateToItem(index + turnCount);
         },
-        clipBehavior: Clip.none,
-        // children: [
-        //   AnimatedPositioned(
-        //     duration: Duration(milliseconds: 1000),
-        //     left: 1000,
-        //     child: Container(
-        //       key: Key('page${pageNumber - 1}'),
-        //       height: 100,
-        //       width: 100,
-        //       color: Colors.red,
-        //       child: Text('${pageNumber - 1}'),
-        //     ),
-        //   ),
-        //   AnimatedPositioned(
-        //     key: Key('page$pageNumber'),
-        //     duration: Duration(milliseconds: 1000),
-        //     child: Container(
-        //       height: 100,
-        //       width: 100,
-        //       color: Colors.blue,
-        //       child: Text('$pageNumber'),
-        //     ),
-        //   ),
-        //   AnimatedPositioned(
-        //     key: Key('page${pageNumber + 1}'),
-        //     duration: Duration(milliseconds: 1000),
-        //     left: -100,
-        //     child: Container(
-        //       height: 100,
-        //       width: 100,
-        //       color: Colors.purple,
-        //       child: Text('${pageNumber + 1}'),
-        //     ),
-        //   ),
-        // ],
-        // children: [
-        //   if(pageNumber>1) AnimatedPositioned(right:  MediaQuery.of(context).size.width,
-        //     duration: Duration(milliseconds: 100),
-        //     child: PageWidget(
-        //         key:Key('page${pageNumber - 1}'),
-        //         pageNumber: pageNumber-1,
-        //         lines: lines,
-        //         focusNode: focusNode),
-        //   ),
-        //   AnimatedPositioned(
-        //     duration: Duration(milliseconds: 100),
-        //     child: PageWidget(
-        //         key:Key('page$pageNumber'),
-        //         pageNumber: pageNumber,
-        //         lines: lines,
-        //         focusNode: focusNode),
-        //   ),
-        //   if(pageNumber < 604)AnimatedPositioned(left: MediaQuery.of(context).size.width,
-        //     duration: Duration(milliseconds: 100),
-        //     child: PageWidget(
-        //     key:Key('page${pageNumber + 1}'),
-        //         pageNumber: pageNumber+1,
-        //         lines: lines,
-        //         focusNode: focusNode),
-        //   ),
-        // ],
+        itemSnapping: true,
+        controller: carouselController,
+        flexWeights: MediaQuery.of(context).size.width > 1100 ? [1, 1] : [1],
+        scrollDirection: Axis.horizontal,
+        children: pageList,
       ),
     );
   }
@@ -188,18 +119,30 @@ class PageWidget extends StatelessWidget {
     return Container(
       color: const Color.fromRGBO(223, 208, 185, .5),
       padding: EdgeInsets.only(
-        right: (pageNumber % 2 == 0) ? 10 : 100,
-        left: (pageNumber % 2 == 0) ? 100 : 10,
+        right: (pageNumber % 2 == 0) ? 0 : 50,
+        left: (pageNumber % 2 == 0) ? 50 : 0,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: lines
-            .map(
-              (line) => Center(
-                child: LineWidget(focusNode: focusNode, line: line),
-              ),
-            )
-            .toList(),
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FittedBox(
+            clipBehavior: Clip.none,
+            fit: BoxFit.none,
+            child: Column(
+              // shrinkWrap: true,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: lines
+                  .map(
+                    (line) => Center(
+                      child: LineWidget(focusNode: focusNode, line: line),
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
+          Text('$pageNumber'),
+        ],
       ),
     );
   }
