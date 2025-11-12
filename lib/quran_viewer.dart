@@ -11,7 +11,7 @@ import 'src/data/line.dart';
 
 Future<dynamic> loadJsonData() async {
   final String response = await rootBundle.loadString(
-    'packages/quran_viewer/lib/assets/lines4.json',
+    'packages/quran_viewer/lib/assets/lines5.json',
   );
   final dynamic data = json.decode(response);
   return data;
@@ -68,11 +68,11 @@ class _BookState extends State<Book> {
     var pages = widget.data as Map<String, dynamic>;
     for (var page in pages.values) {
       _addPage(page as List);
-      if (pageList.length >= 50) break;
+      if (pageList.length >= 1000) break;
     }
   }
 
-  _addPage(linesJson) {
+  void _addPage(linesJson) {
     linesJson as List<dynamic>;
     final lines = linesJson.map((line) => Line.fromJson(line)).toList();
     final pageNumber = lines.first.pageNumber;
@@ -149,28 +149,33 @@ class PageWidget extends StatelessWidget {
         right: (pageNumber % 2 == 0) ? 5 : 50,
         left: (pageNumber % 2 == 0) ? 50 : 5,
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          FittedBox(
-            clipBehavior: Clip.none,
-            fit: BoxFit.none,
-            child: Column(
-              // shrinkWrap: true,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: lines
-                  .map(
-                    (line) => LineWidget(
-                      viewerController: viewerController,
-                      line: line,
-                    ),
-                  )
-                  .toList(),
-            ),
+      child: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              FittedBox(
+                clipBehavior: Clip.none,
+                fit: BoxFit.none,
+                child: Column(
+                  // shrinkWrap: true,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: lines
+                      .map(
+                        (line) => LineWidget(
+                          viewerController: viewerController,
+                          line: line,
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
+              const Divider(),
+              Text('$pageNumber'),
+            ],
           ),
-          Text('$pageNumber'),
-        ],
+        ),
       ),
     );
   }
@@ -188,6 +193,36 @@ class LineWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (line.lineType == LineType.surahName) {
+      return Stack(
+        alignment:AlignmentGeometry.center,
+        fit: StackFit.passthrough,
+        children: [
+          Text('header', style: TextStyle(fontFamily: 'Juz', fontSize: 38)),
+          Text(
+            'surah${line.surah.toString().padLeft(3, "0")}',
+            style: TextStyle(fontFamily: 'QPC v2 surah name', fontSize: 30),
+          ),
+        ],
+      );
+    }
+    if (line.lineType == LineType.basmallah) {
+      return Text('﷽', style: TextStyle(fontFamily: 'Juz', fontSize: 30),);
+    //   return WordWidget(
+    //     viewerController: viewerController,
+    //     onTap: () {
+    //       print(line.surah);
+    //     },
+    //     word: Word(
+    //       id: '${line.surah}:0:basmallah',
+    //       ayahId: '${line.surah}:0',
+    //       glyph: BASMALLAH,
+    //       isAyahEnd: false,
+    //     ),
+    //     style: TextStyle(fontFamily: 'QPC v2 p1', fontSize: 30),
+    //   );
+    }
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -201,7 +236,9 @@ class LineWidget extends StatelessWidget {
               },
               word: word,
               style: TextStyle(
-                fontFamily: 'QPC v2 p${line.pageNumber}',
+                fontFamily: (line.lineType == LineType.basmallah)
+                    ? 'QPC v2 p1'
+                    : 'QPC v2 p${line.pageNumber}',
                 fontSize: 30,
               ),
             ),

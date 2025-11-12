@@ -2474,3 +2474,15 @@ flutter:
     - family: QPC v2 p604
       fonts:
         - asset: packages/quran_viewer/fonts/qpc_v2/p604.ttf
+
+    - family: QPC v2 surah name
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/surah-name.ttf
+
+    - family: QPC v2 surah header
+      fonts:
+        - asset: packages/quran_viewer/fonts/qpc_v2/surah-header-color-regular.ttf
+
+    - family: Juz
+      fonts:
+        - asset: packages/quran_viewer/fonts/juz.ttf
