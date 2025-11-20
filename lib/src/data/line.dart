@@ -222,4 +222,15 @@ class QuranPage {
         .toList();
     return QuranPage(id: json['id'], lines: lines, juzId: json['juz']);
   }
+
+  bool contains(String ayahId){
+    for (var line in lines){
+      for (var word in line.words){
+        if (word.ayahId == ayahId){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 }

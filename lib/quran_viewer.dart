@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:quran_viewer/quran_search_bar.dart';
 import 'package:quran_viewer/src/controller.dart';
 import 'dart:async';
 
@@ -47,6 +48,7 @@ class QuranViewer extends StatelessWidget {
                     '${a["surah_id"]}:${a["id"]}': Ayah.fromJson(a),
                 };
                 return Book(
+                  words:words,
                   ayahs: ayahs,
                   surahs: d['surahs']!
                       .map<Surah>((e) => Surah.fromJson(e))
@@ -67,12 +69,14 @@ class QuranViewer extends StatelessWidget {
 class Book extends StatefulWidget {
   const Book({
     super.key,
+    required this.words,
     required this.ayahs,
     required this.surahs,
     required this.pages,
     this.viewerController,
   });
 
+  final List<Word> words;
   final Map<String, Ayah> ayahs;
   final List<Surah> surahs;
   final List<QuranPage> pages;
@@ -86,7 +90,13 @@ class _BookState extends State<Book> {
   final pageList = <Widget>[];
   final pageController = PageController(initialPage: 5);
   late final ViewerController viewerController =
-      widget.viewerController ?? ViewerController(ViewerConfig());
+      widget.viewerController ??
+      ViewerController(ViewerConfig(), pageController: pageController,
+      words:widget.words,
+        ayahs:widget.ayahs,
+        surahs:widget.surahs,
+          pages:widget.pages,
+      );
 
   @override
   void dispose() {
@@ -123,32 +133,43 @@ class _BookState extends State<Book> {
           );
         },
       ),
-
-      body: GestureDetector(
-        onTap: () {
-          viewerController.removeAyahFocus();
-          // pageController.nextPage(
-          //   duration: Duration(milliseconds: 400),
-          //   curve: Curves.easeInOut,
-          // );
-        },
-        child: PageView.builder(
-          controller: pageController,
-          clipBehavior: Clip.none,
-          pageSnapping: true,
-          padEnds: true,
-          itemCount: pageList.length,
-          scrollDirection: Axis.horizontal,
-          scrollBehavior: ScrollConfiguration.of(context).copyWith(
-            scrollbars: false,
-            dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          QuranSearchBar(viewerController: viewerController),
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                viewerController.removeAyahFocus();
+                // pageController.nextPage(
+                //   duration: Duration(milliseconds: 400),
+                //   curve: Curves.easeInOut,
+                // );
+              },
+              child: PageView.builder(
+                controller: pageController,
+                clipBehavior: Clip.none,
+                pageSnapping: true,
+                padEnds: true,
+                itemCount: pageList.length,
+                scrollDirection: Axis.horizontal,
+                scrollBehavior: ScrollConfiguration.of(context).copyWith(
+                  scrollbars: false,
+                  dragDevices: {
+                    PointerDeviceKind.touch,
+                    PointerDeviceKind.mouse,
+                  },
+                ),
+                physics: const PageScrollPhysics(),
+                itemBuilder: (BuildContext context, int index) {
+                  return pageList[index];
+                },
+                // children: pageList,
+              ),
+            ),
           ),
-          physics: const PageScrollPhysics(),
-          itemBuilder: (BuildContext context, int index) {
-            return pageList[index];
-          },
-          // children: pageList,
-        ),
+        ],
       ),
     );
   }
@@ -278,9 +299,9 @@ class LineWidget extends StatelessWidget {
     final rubWidget = (line.rubNumber == null)
         ? null
         : Text(
-      // hizb = ((line.rubNumber!-1)~/4)+1
-      // rub =(line.rubNumber!-1) % 4
-            ((line.rubNumber!-1) % 4 == 0) ? 'marker-full' : 'marker-half',
+            // hizb = ((line.rubNumber!-1)~/4)+1
+            // rub =(line.rubNumber!-1) % 4
+            ((line.rubNumber! - 1) % 4 == 0) ? 'marker-full' : 'marker-half',
             style: TextStyle(fontFamily: 'Juz', fontSize: 40),
           );
     return Row(
