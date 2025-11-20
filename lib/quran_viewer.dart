@@ -84,7 +84,7 @@ class Book extends StatefulWidget {
 
 class _BookState extends State<Book> {
   final pageList = <Widget>[];
-  final pageController = PageController(initialPage: 527);
+  final pageController = PageController(initialPage: 5);
   late final ViewerController viewerController =
       widget.viewerController ?? ViewerController(ViewerConfig());
 
@@ -207,15 +207,14 @@ class PageWidget extends StatelessWidget {
                 // shrinkWrap: true,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ...lines
-                    .map(
-                      (line) => LineWidget(
-                        viewerController: viewerController,
-                        pageNumber: pageNumber,
-                        line: line,
-                      ),
-                    )
-                    ],
+                  ...lines.map(
+                    (line) => LineWidget(
+                      viewerController: viewerController,
+                      pageNumber: pageNumber,
+                      line: line,
+                    ),
+                  ),
+                ],
               ),
 
               const Divider(),
@@ -272,16 +271,25 @@ class LineWidget extends StatelessWidget {
       //   );
     }
 
-    final marginWidget = Text(
-            'marker-half',
+    final sajdaWidget = Text(
+      'marker-half',
+      style: TextStyle(fontFamily: 'Juz', fontSize: 40),
+    );
+    final rubWidget = (line.rubNumber == null)
+        ? null
+        : Text(
+      // hizb = ((line.rubNumber!-1)~/4)+1
+      // rub =(line.rubNumber!-1) % 4
+            ((line.rubNumber!-1) % 4 == 0) ? 'marker-full' : 'marker-half',
             style: TextStyle(fontFamily: 'Juz', fontSize: 40),
           );
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        if (pageNumber %2 !=0 && line.hasSajda)
-          marginWidget,
+        if (pageNumber % 2 != 0)
+          if (line.hasSajda) sajdaWidget else if (rubWidget != null) rubWidget,
+
         Spacer(),
         ...line.words.map(
           (word) => WordWidget(
@@ -300,8 +308,8 @@ class LineWidget extends StatelessWidget {
           ),
         ),
         Spacer(),
-        if (pageNumber %2 ==0 && line.hasSajda)
-          marginWidget,
+        if (pageNumber % 2 == 0)
+          if (line.hasSajda) sajdaWidget else if (rubWidget != null) rubWidget,
       ],
     );
   }

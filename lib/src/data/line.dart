@@ -39,11 +39,13 @@ class Ayah {
   final int surahId;
   final List<int> wordIds;
   final bool hasSajda;
+  final int? rubNumber;
 
   Ayah({
     required this.id,
     required this.surahId,
     required this.wordIds,
+    required this.rubNumber,
     this.hasSajda = false,
   });
 
@@ -53,6 +55,7 @@ class Ayah {
       surahId: json['surah_id'],
       wordIds: json['word_ids'].cast<int>(),
       hasSajda: json['has_sajda'],
+      rubNumber: json['rub_number'],
     );
   }
 
@@ -73,6 +76,7 @@ class Ayah {
       surahId: surahId,
       wordIds: wordIds,
       hasSajda: hasSajda,
+      rubNumber: null,
     );
   }
 
@@ -121,6 +125,7 @@ class Line {
   final int surahId;
   final List<Word> words;
   final bool hasSajda;
+  final int? rubNumber;
 
   Line({
     // required this.pageNumber,
@@ -129,6 +134,7 @@ class Line {
     required this.surahId,
     required this.words,
     required this.hasSajda,
+    required this.rubNumber,
   });
 
   factory Line.fromJson(
@@ -140,12 +146,23 @@ class Line {
         .map<Word>((wordId) => words[wordId - 1])
         .toList();
     var hasSajda = false;
-    words2.forEach((word) {
+    int? rubNumber;
+    for (var word in words2) {
       final ayah = ayahs['${word.ayahId}'];
+
       if (ayah != null && ayah.hasSajda) {
         hasSajda = true;
       }
-    });
+      if (ayah != null &&
+          ayah.rubNumber != null &&
+          ayah.wordIds.last == word.globalId - 1) {
+        if(word.globalId > 375 && word.globalId < 411) {
+          // print('word: ${word.globalId} ${word.text} ${word.ayahId} ${ayah?.rubNumber??""}');
+          print('${((ayah.rubNumber!-1)%4 )} ');
+        }
+        rubNumber = ayah.rubNumber;
+      }
+    }
     return Line(
       id: json['id'],
       lineType: json['line_type'] == 'ayah'
@@ -156,6 +173,7 @@ class Line {
       surahId: json['surah_id'],
       words: words2,
       hasSajda: hasSajda,
+      rubNumber: rubNumber,
     );
   }
 }
