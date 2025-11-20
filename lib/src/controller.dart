@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:quran_viewer/src/data/line.dart';
 
 class ViewerConfig {
   final String? focusedAyahId;

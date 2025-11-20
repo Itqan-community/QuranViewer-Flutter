@@ -9,11 +9,11 @@ import 'dart:async';
 
 import 'src/data/line.dart';
 
-Future<dynamic> loadJsonData() async {
+Future<Map<String, dynamic>> loadQuranData() async {
   final String response = await rootBundle.loadString(
-    'packages/quran_viewer/lib/assets/lines5.json',
+    'packages/quran_viewer/lib/assets/quran_data.json',
   );
-  final dynamic data = json.decode(response);
+  final data = jsonDecode(response) as Map<String, dynamic>;
   return data;
 }
 
@@ -25,25 +25,57 @@ class QuranViewer extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: FutureBuilder(
-        future: loadJsonData(),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          } else {
-            return Book(data: snapshot.data);
-          }
-        },
+        future: loadQuranData(),
+        builder:
+            (
+              BuildContext context,
+              AsyncSnapshot<Map<String, dynamic>> snapshot,
+            ) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              } else if (snapshot.hasError ||
+                  !snapshot.hasData ||
+                  snapshot.data == null) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                var d = snapshot.data!;
+                var words = d['words']!
+                    .map<Word>((e) => Word.fromJson(e))
+                    .toList();
+                final ayahs = {
+                  for (var a in d['ayahs'])
+                    '${a["surah_id"]}:${a["id"]}': Ayah.fromJson(a),
+                };
+                return Book(
+                  ayahs: ayahs,
+                  surahs: d['surahs']!
+                      .map<Surah>((e) => Surah.fromJson(e))
+                      .toList(),
+                  pages: d['pages']!
+                      .map<QuranPage>(
+                        (e) => QuranPage.fromJson(e, words, ayahs),
+                      )
+                      .toList(),
+                );
+              }
+            },
       ),
     );
   }
 }
 
 class Book extends StatefulWidget {
-  const Book({super.key, required this.data, this.viewerController});
+  const Book({
+    super.key,
+    required this.ayahs,
+    required this.surahs,
+    required this.pages,
+    this.viewerController,
+  });
 
-  final data;
+  final Map<String, Ayah> ayahs;
+  final List<Surah> surahs;
+  final List<QuranPage> pages;
   final ViewerController? viewerController;
 
   @override
@@ -52,7 +84,7 @@ class Book extends StatefulWidget {
 
 class _BookState extends State<Book> {
   final pageList = <Widget>[];
-  final pageController = PageController(initialPage: 0);
+  final pageController = PageController(initialPage: 527);
   late final ViewerController viewerController =
       widget.viewerController ?? ViewerController(ViewerConfig());
 
@@ -65,25 +97,18 @@ class _BookState extends State<Book> {
   @override
   void initState() {
     super.initState();
-    var pages = widget.data as Map<String, dynamic>;
-    for (var page in pages.values) {
-      _addPage(page as List);
-      if (pageList.length >= 1000) break;
-    }
-  }
 
-  void _addPage(linesJson) {
-    linesJson as List<dynamic>;
-    final lines = linesJson.map((line) => Line.fromJson(line)).toList();
-    final pageNumber = lines.first.pageNumber;
-    pageList.add(
-      PageWidget(
-        key: Key('page$pageNumber'),
-        viewerController: viewerController,
-        pageNumber: pageNumber,
-        lines: lines,
-      ),
-    );
+    for (var page in widget.pages) {
+      pageList.add(
+        PageWidget(
+          key: Key('page${page.id}'),
+          viewerController: viewerController,
+          pageNumber: page.id,
+          lines: page.lines,
+          juzId: page.juzId,
+        ),
+      );
+    }
   }
 
   @override
@@ -135,11 +160,15 @@ class PageWidget extends StatelessWidget {
     required this.pageNumber,
     required this.lines,
     required this.viewerController,
+    required this.juzId,
+    this.marginWidgetBuilder,
   });
 
   final int pageNumber;
   final List<Line> lines;
   final ViewerController viewerController;
+  final int juzId;
+  final Widget Function(Line line)? marginWidgetBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -153,24 +182,42 @@ class PageWidget extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             children: [
-              FittedBox(
-                clipBehavior: Clip.none,
-                fit: BoxFit.none,
-                child: Column(
-                  // shrinkWrap: true,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: lines
-                      .map(
-                        (line) => LineWidget(
-                          viewerController: viewerController,
-                          line: line,
-                        ),
-                      )
-                      .toList(),
+              if (pageNumber > 2)
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      'juz${juzId.toString().padLeft(3, "0")}',
+                      style: TextStyle(fontFamily: 'Juz', fontSize: 20),
+                    ),
+                    Text(
+                      'surah${lines.first.surahId.toString().padLeft(3, "0")}',
+                      style: TextStyle(
+                        fontFamily: 'QPC v2 surah name',
+                        fontSize: 25,
+                      ),
+                    ),
+                  ],
                 ),
+
+              Column(
+                // shrinkWrap: true,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ...lines
+                    .map(
+                      (line) => LineWidget(
+                        viewerController: viewerController,
+                        pageNumber: pageNumber,
+                        line: line,
+                      ),
+                    )
+                    ],
               ),
+
               const Divider(),
               Text('$pageNumber'),
             ],
@@ -185,65 +232,77 @@ class LineWidget extends StatelessWidget {
   const LineWidget({
     super.key,
     required this.line,
+    required this.pageNumber,
     required this.viewerController,
   });
 
   final Line line;
+  final int pageNumber;
   final ViewerController viewerController;
 
   @override
   Widget build(BuildContext context) {
     if (line.lineType == LineType.surahName) {
       return Stack(
-        alignment:AlignmentGeometry.center,
+        alignment: AlignmentGeometry.center,
         fit: StackFit.passthrough,
         children: [
           Text('header', style: TextStyle(fontFamily: 'Juz', fontSize: 38)),
           Text(
-            'surah${line.surah.toString().padLeft(3, "0")}',
+            'surah${line.surahId.toString().padLeft(3, "0")}',
             style: TextStyle(fontFamily: 'QPC v2 surah name', fontSize: 30),
           ),
         ],
       );
     }
     if (line.lineType == LineType.basmallah) {
-      return Text('﷽', style: TextStyle(fontFamily: 'Juz', fontSize: 30),);
-    //   return WordWidget(
-    //     viewerController: viewerController,
-    //     onTap: () {
-    //       print(line.surah);
-    //     },
-    //     word: Word(
-    //       id: '${line.surah}:0:basmallah',
-    //       ayahId: '${line.surah}:0',
-    //       glyph: BASMALLAH,
-    //       isAyahEnd: false,
-    //     ),
-    //     style: TextStyle(fontFamily: 'QPC v2 p1', fontSize: 30),
-    //   );
+      return Text('﷽', style: TextStyle(fontFamily: 'Juz', fontSize: 30));
+      //   return WordWidget(
+      //     viewerController: viewerController,
+      //     onTap: () {
+      //       print(line.surah);
+      //     },
+      //     word: Word(
+      //       id: '${line.surah}:0:basmallah',
+      //       ayahId: '${line.surah}:0',
+      //       glyph: BASMALLAH,
+      //       isAyahEnd: false,
+      //     ),
+      //     style: TextStyle(fontFamily: 'QPC v2 p1', fontSize: 30),
+      //   );
     }
 
+    final marginWidget = Text(
+            'marker-half',
+            style: TextStyle(fontFamily: 'Juz', fontSize: 40),
+          );
     return Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: line.words
-          .map(
-            (word) => WordWidget(
-              viewerController: viewerController,
-              onTap: () {
-                // move focus to the previous word
-                print(word);
-              },
-              word: word,
-              style: TextStyle(
-                fontFamily: (line.lineType == LineType.basmallah)
-                    ? 'QPC v2 p1'
-                    : 'QPC v2 p${line.pageNumber}',
-                fontSize: 30,
-              ),
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (pageNumber %2 !=0 && line.hasSajda)
+          marginWidget,
+        Spacer(),
+        ...line.words.map(
+          (word) => WordWidget(
+            viewerController: viewerController,
+            onTap: () {
+              // move focus to the previous word
+              print(word);
+            },
+            word: word,
+            style: TextStyle(
+              fontFamily: (line.lineType == LineType.basmallah)
+                  ? 'QPC v2 p1'
+                  : 'QPC v2 p$pageNumber',
+              fontSize: 30,
             ),
-          )
-          .toList(),
+          ),
+        ),
+        Spacer(),
+        if (pageNumber %2 ==0 && line.hasSajda)
+          marginWidget,
+      ],
     );
   }
 }
@@ -272,7 +331,7 @@ class WordWidget extends StatelessWidget {
             ? Colors.blueGrey
             : Colors.transparent,
         child: InkWell(
-          key: Key('word${word.id}'),
+          key: Key('word${word.globalId}'),
           highlightColor: Colors.blue,
           onTap: () {
             viewerController.focusOnAyah(word.ayahId);
