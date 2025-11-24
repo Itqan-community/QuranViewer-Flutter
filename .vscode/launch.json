@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Flutter",
+            "type": "dart",
+            "request": "launch",
+            "program": "example/lib/main.dart",
+        },
+        {
+            "name": "quran_viewer (Flutter Tests)",
+            "program": "test",
+            "request": "launch",
+            "type": "dart",
+        }
+    ]
+}

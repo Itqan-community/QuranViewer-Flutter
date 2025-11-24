@@ -28,4 +28,10 @@ class ViewerController extends ValueNotifier<ViewerConfig> {
     notifyListeners();
   }
 
+  void jumpToJuz(){}
+  void jumpToRub(){}
+  void jumpToRuku(){}
+  void jumpToSurah(){}
+  void jumpToAyah(){}
+
 }

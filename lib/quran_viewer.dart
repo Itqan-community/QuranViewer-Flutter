@@ -307,30 +307,30 @@ class LineWidget extends StatelessWidget {
         ...line.words.map(
           (word) => WordWidget(
             viewerController: viewerController,
-            onTap: (word) async{
+            onTap: (word) async {
               // move focus to the previous word
               print(word);
               //show bottom sheet
               if (word.isAyahEnd) {
                 await showModalBottomSheet(
-                context: context,
-                builder: (context) {
-                  return BottomSheet(
-                    builder: (BuildContext context) => SizedBox(
-                      height: MediaQuery.of(context).size.height/4,
-                      child: Column(
-                        children: [
-                          Text(
-                            'Show Translation/Tafsir for this word or this Ayah',
-                          ),
-                          Text('Word: ${word.text} (Ayah: ${word.ayahId})'),
-                        ],
+                  context: context,
+                  builder: (context) {
+                    return BottomSheet(
+                      builder: (BuildContext context) => SizedBox(
+                        height: MediaQuery.of(context).size.height / 4,
+                        child: Column(
+                          children: [
+                            Text(
+                              'Show Translation/Tafsir for this word or this Ayah',
+                            ),
+                            Text('Word: ${word.text} (Ayah: ${word.ayahId})'),
+                          ],
+                        ),
                       ),
-                    ),
-                    onClosing: () {},
-                  );
-                },
-              );
+                      onClosing: () {},
+                    );
+                  },
+                );
               }
             },
             word: word,
