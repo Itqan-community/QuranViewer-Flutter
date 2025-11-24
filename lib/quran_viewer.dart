@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -48,7 +47,7 @@ class QuranViewer extends StatelessWidget {
                     '${a["surah_id"]}:${a["id"]}': Ayah.fromJson(a),
                 };
                 return Book(
-                  words:words,
+                  words: words,
                   ayahs: ayahs,
                   surahs: d['surahs']!
                       .map<Surah>((e) => Surah.fromJson(e))
@@ -91,11 +90,13 @@ class _BookState extends State<Book> {
   final pageController = PageController(initialPage: 5);
   late final ViewerController viewerController =
       widget.viewerController ??
-      ViewerController(ViewerConfig(), pageController: pageController,
-      words:widget.words,
-        ayahs:widget.ayahs,
-        surahs:widget.surahs,
-          pages:widget.pages,
+      ViewerController(
+        ViewerConfig(),
+        pageController: pageController,
+        words: widget.words,
+        ayahs: widget.ayahs,
+        surahs: widget.surahs,
+        pages: widget.pages,
       );
 
   @override
@@ -124,15 +125,6 @@ class _BookState extends State<Book> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          pageController.animateToPage(
-            Random().nextInt(pageList.length),
-            duration: Duration(milliseconds: 120),
-            curve: Curves.fastLinearToSlowEaseIn,
-          );
-        },
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -315,9 +307,31 @@ class LineWidget extends StatelessWidget {
         ...line.words.map(
           (word) => WordWidget(
             viewerController: viewerController,
-            onTap: () {
+            onTap: (word) async{
               // move focus to the previous word
               print(word);
+              //show bottom sheet
+              if (word.isAyahEnd) {
+                await showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return BottomSheet(
+                    builder: (BuildContext context) => SizedBox(
+                      height: MediaQuery.of(context).size.height/4,
+                      child: Column(
+                        children: [
+                          Text(
+                            'Show Translation/Tafsir for this word or this Ayah',
+                          ),
+                          Text('Word: ${word.text} (Ayah: ${word.ayahId})'),
+                        ],
+                      ),
+                    ),
+                    onClosing: () {},
+                  );
+                },
+              );
+              }
             },
             word: word,
             style: TextStyle(
@@ -347,7 +361,7 @@ class WordWidget extends StatelessWidget {
 
   final Word word;
   final TextStyle style;
-  final Function() onTap;
+  final Function(Word word) onTap;
   final ViewerController viewerController;
 
   @override
@@ -362,9 +376,9 @@ class WordWidget extends StatelessWidget {
         child: InkWell(
           key: Key('word${word.globalId}'),
           highlightColor: Colors.blue,
-          onTap: () {
+          onTap: () async {
             viewerController.focusOnAyah(word.ayahId);
-            onTap();
+            await onTap(word);
           },
           child: Text(word.glyph, style: style),
         ),

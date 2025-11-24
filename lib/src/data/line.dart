@@ -28,7 +28,7 @@ class Word {
       glyph: json['glyph'],
       ayahId: json['ayah_id'],
       text: json['text'],
-      isAyahEnd: json['is_ayah_end'] == 1,
+      isAyahEnd: json['is_ayah_end'],
     );
   }
 }
@@ -119,8 +119,7 @@ class Surah {
 
 class Line {
   final int id;
-
-  // final int pageNumber;
+  final int pageNumber;
   final LineType lineType;
   final int surahId;
   final List<Word> words;
@@ -128,8 +127,8 @@ class Line {
   final int? rubNumber;
 
   Line({
-    // required this.pageNumber,
     required this.id,
+    required this.pageNumber,
     required this.lineType,
     required this.surahId,
     required this.words,
@@ -138,6 +137,7 @@ class Line {
   });
 
   factory Line.fromJson(
+      int pageNumber,
     Map<String, dynamic> json,
     List<Word> words,
     Map<String, Ayah> ayahs,
@@ -156,10 +156,6 @@ class Line {
       if (ayah != null &&
           ayah.rubNumber != null &&
           ayah.wordIds.last == word.globalId - 1) {
-        if(word.globalId > 375 && word.globalId < 411) {
-          // print('word: ${word.globalId} ${word.text} ${word.ayahId} ${ayah?.rubNumber??""}');
-          print('${((ayah.rubNumber!-1)%4 )} ');
-        }
         rubNumber = ayah.rubNumber;
       }
     }
@@ -174,6 +170,7 @@ class Line {
       words: words2,
       hasSajda: hasSajda,
       rubNumber: rubNumber,
+      pageNumber: pageNumber,
     );
   }
 }
@@ -218,7 +215,7 @@ class QuranPage {
     final linesJson = json['lines'] as List<dynamic>;
 
     final lines = linesJson
-        .map((line) => Line.fromJson(line, words, ayahs))
+        .map((line) => Line.fromJson(json['id'], line, words, ayahs))
         .toList();
     return QuranPage(id: json['id'], lines: lines, juzId: json['juz']);
   }
