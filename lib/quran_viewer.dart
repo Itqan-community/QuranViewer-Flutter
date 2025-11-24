@@ -8,6 +8,10 @@ import 'package:quran_viewer/src/controller.dart';
 import 'dart:async';
 
 import 'src/data/line.dart';
+import 'src/data/word.dart';
+import 'src/data/ayah.dart';
+import 'src/data/surah.dart';
+import 'src/data/quran_page.dart';
 
 Future<Map<String, dynamic>> loadQuranData() async {
   final String response = await rootBundle.loadString(
