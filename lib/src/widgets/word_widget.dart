@@ -22,7 +22,7 @@ class WordWidget extends StatelessWidget {
       listenable: viewerController,
       child: InkWell(
         key: Key('word${word.globalId}'),
-        highlightColor: Colors.blue,
+        highlightColor: viewerController.value.wordHighlightColor,
         onTap: () async {
           viewerController.focusOnAyah(word.ayahId);
           await onTap(word);
@@ -32,7 +32,7 @@ class WordWidget extends StatelessWidget {
       builder: (BuildContext context, Widget? child) => Container(
         margin: const EdgeInsets.symmetric(vertical: 4.0),
         color: viewerController.value.focusedAyahId == word.ayahId
-            ? Colors.blueGrey
+            ? viewerController.value.wordFocusColor
             : null,
         child: child,
       ),

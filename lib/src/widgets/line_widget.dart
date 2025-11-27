@@ -23,27 +23,48 @@ class LineWidget extends StatelessWidget {
         alignment: AlignmentGeometry.center,
         fit: StackFit.passthrough,
         children: [
-          Text('header', style: TextStyle(fontFamily: 'Juz', fontSize: 38)),
+          Text(
+            'header',
+            style: TextStyle(
+              fontFamily: 'Juz',
+              fontSize: viewerController.value.headerFontSize,
+            ),
+          ),
           Text(
             'surah${line.surahId.toString().padLeft(3, "0")}',
-            style: TextStyle(fontFamily: 'QPC v2 surah name', fontSize: 30),
+            style: TextStyle(
+              fontFamily: 'QPC v2 surah name',
+              fontSize: viewerController.value.surahNameFontSize,
+            ),
           ),
         ],
       );
     }
     if (line.lineType == LineType.basmallah) {
-      return Text('﷽', style: TextStyle(fontFamily: 'Juz', fontSize: 30));
+      return Text(
+        '﷽',
+        style: TextStyle(
+          fontFamily: 'Juz',
+          fontSize: viewerController.value.basmallahFontSize,
+        ),
+      );
     }
 
     final sajdaWidget = Text(
       'marker-half',
-      style: TextStyle(fontFamily: 'Juz', fontSize: 40),
+      style: TextStyle(
+        fontFamily: 'Juz',
+        fontSize: viewerController.value.markerFontSize,
+      ),
     );
     final rubWidget = (line.rubNumber == null)
         ? null
         : Text(
             ((line.rubNumber! - 1) % 4 == 0) ? 'marker-full' : 'marker-half',
-            style: TextStyle(fontFamily: 'Juz', fontSize: 40),
+            style: TextStyle(
+              fontFamily: 'Juz',
+              fontSize: viewerController.value.markerFontSize,
+            ),
           );
     return Row(
       mainAxisSize: MainAxisSize.max,
@@ -86,7 +107,7 @@ class LineWidget extends StatelessWidget {
               fontFamily: (line.lineType == LineType.basmallah)
                   ? 'QPC v2 p1'
                   : 'QPC v2 p$pageNumber',
-              fontSize: 30,
+              fontSize: viewerController.value.wordFontSize,
             ),
           ),
         ),

@@ -21,12 +21,23 @@ class PageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color.fromRGBO(223, 208, 185, .5),
-      padding: EdgeInsets.only(
-        right: (pageNumber % 2 == 0) ? 5 : 50,
-        left: (pageNumber % 2 == 0) ? 50 : 5,
-      ),
+    return ListenableBuilder(
+      listenable: viewerController,
+      builder: (context, child) {
+        final config = viewerController.value;
+        return Container(
+          color: config.pageBackgroundColor,
+          padding: EdgeInsets.only(
+            right: (pageNumber % 2 == 0)
+                ? config.pageInnerMargin
+                : config.pageOuterMargin,
+            left: (pageNumber % 2 == 0)
+                ? config.pageOuterMargin
+                : config.pageInnerMargin,
+          ),
+          child: child,
+        );
+      },
       child: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -40,13 +51,16 @@ class PageWidget extends StatelessWidget {
                   children: [
                     Text(
                       'juz${juzId.toString().padLeft(3, "0")}',
-                      style: TextStyle(fontFamily: 'Juz', fontSize: 20),
+                      style: TextStyle(
+                        fontFamily: 'Juz',
+                        fontSize: viewerController.value.juzFontSize,
+                      ),
                     ),
                     Text(
                       'surah${lines.first.surahId.toString().padLeft(3, "0")}',
                       style: TextStyle(
                         fontFamily: 'QPC v2 surah name',
-                        fontSize: 25,
+                        fontSize: viewerController.value.surahHeaderFontSize,
                       ),
                     ),
                   ],

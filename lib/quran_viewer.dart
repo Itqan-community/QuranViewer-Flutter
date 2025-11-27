@@ -49,11 +49,11 @@ class QuranViewer extends StatelessWidget {
                   words: words,
                   ayahs: ayahs,
                   surahs: d['surahs']!
-                      .map<Surah>((e) => Surah.fromJson(e))
+                      .map<Surah>((surah) => Surah.fromJson(surah))
                       .toList(),
                   pages: d['pages']!
                       .map<QuranPage>(
-                        (e) => QuranPage.fromJson(e, words, ayahs),
+                        (page) => QuranPage.fromJson(page, words, ayahs),
                       )
                       .toList(),
                 );

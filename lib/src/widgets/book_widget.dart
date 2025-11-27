@@ -30,27 +30,37 @@ class Book extends StatefulWidget {
 
 class _BookState extends State<Book> {
   final pageList = <Widget>[];
-  final pageController = PageController(initialPage: 5);
-  late final ViewerController viewerController =
-      widget.viewerController ??
-      ViewerController(
-        ViewerConfig(),
-        pageController: pageController,
-        words: widget.words,
-        ayahs: widget.ayahs,
-        surahs: widget.surahs,
-        pages: widget.pages,
-      );
+  ViewerController? _localViewerController;
+  PageController? _localPageController;
+
+  ViewerController get viewerController =>
+      widget.viewerController ?? _localViewerController!;
 
   @override
   void dispose() {
-    pageController.dispose();
+    _localPageController?.dispose();
+    _localViewerController?.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
+
+    if (widget.viewerController == null) {
+      final config = ViewerConfig();
+      _localPageController = PageController(
+        initialPage: config.initialPage - 1,
+      );
+      _localViewerController = ViewerController(
+        config,
+        pageController: _localPageController!,
+        words: widget.words,
+        ayahs: widget.ayahs,
+        surahs: widget.surahs,
+        pages: widget.pages,
+      );
+    }
 
     for (var page in widget.pages) {
       pageList.add(
@@ -83,7 +93,7 @@ class _BookState extends State<Book> {
                 // );
               },
               child: PageView.builder(
-                controller: pageController,
+                controller: viewerController.pageController,
                 clipBehavior: Clip.none,
                 pageSnapping: true,
                 padEnds: true,
