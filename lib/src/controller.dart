@@ -35,9 +35,25 @@ class ViewerController extends ValueNotifier<ViewerConfig> {
     notifyListeners();
   }
 
-  void jumpToJuz() {}
+  void jumpToJuz(int juzId) {
+    final page = pages.firstWhere((p) => p.juzId == juzId);
+    pageController.jumpToPage(page.id - 1);
+  }
+
   void jumpToRub() {}
   void jumpToRuku() {}
-  void jumpToSurah() {}
-  void jumpToAyah() {}
+
+  void jumpToSurah(int surahId) {
+    final surah = surahs.firstWhere((s) => s.id == surahId);
+    final ayahId = surah.ayahIds.first.toString();
+    final page = pages.firstWhere((p) => p.contains(ayahId));
+    pageController.jumpToPage(page.id - 1);
+    focusOnAyah(ayahId);
+  }
+
+  void jumpToAyah(String ayahId) {
+    final page = pages.firstWhere((p) => p.contains(ayahId));
+    pageController.jumpToPage(page.id - 1);
+    focusOnAyah(ayahId);
+  }
 }
