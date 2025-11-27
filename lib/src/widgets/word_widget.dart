@@ -20,20 +20,21 @@ class WordWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListenableBuilder(
       listenable: viewerController,
+      child: InkWell(
+        key: Key('word${word.globalId}'),
+        highlightColor: Colors.blue,
+        onTap: () async {
+          viewerController.focusOnAyah(word.ayahId);
+          await onTap(word);
+        },
+        child: Text(word.glyph, style: style),
+      ),
       builder: (BuildContext context, Widget? child) => Container(
-        padding: const EdgeInsets.symmetric(vertical: 4.0),
+        margin: const EdgeInsets.symmetric(vertical: 4.0),
         color: viewerController.value.focusedAyahId == word.ayahId
             ? Colors.blueGrey
-            : Colors.transparent,
-        child: InkWell(
-          key: Key('word${word.globalId}'),
-          highlightColor: Colors.blue,
-          onTap: () async {
-            viewerController.focusOnAyah(word.ayahId);
-            await onTap(word);
-          },
-          child: Text(word.glyph, style: style),
-        ),
+            : null,
+        child: child,
       ),
     );
   }

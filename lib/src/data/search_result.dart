@@ -7,16 +7,16 @@ class SearchResult {
 
 class SurahSearchResult extends SearchResult {
   SurahSearchResult({
-    required String type,
-    required String text,
-    required String id,
-  }) : super(type: type, text: text, id: id);
+    required super.type,
+    required super.text,
+    required super.id,
+  });
 }
 
 class AyahSearchResult extends SearchResult {
   AyahSearchResult({
-    required String type,
-    required String text,
-    required String id,
-  }) : super(type: type, text: text, id: id);
+    required super.type,
+    required super.text,
+    required super.id,
+  });
 }
