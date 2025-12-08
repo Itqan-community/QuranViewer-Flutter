@@ -1,7 +1,10 @@
 name: quran_viewer
 description: "Open Source UI Quran Viewer"
-version: 0.0.1
-homepage:
+version: 0.1.0
+homepage: "https://github.com/Itqan-community/RATQ"
+repository: "https://github.com/Itqan-community/RATQ"
+topics:
+  - Quran
 
 environment:
   sdk: ^3.9.2
